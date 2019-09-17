@@ -39,9 +39,13 @@ const GridWatch = (): ReactElement => {
               {moment(generationMix.data.from).format("MMM Do YYYY")} <hr />
             </Col>
           </Row>
-          {generationMix.data.generationmix.map((gm: GenerationMix) => (
-            <GenerationMixChart {...gm} />
-          ))}
+          <Row type='flex' justify='center'>
+            {generationMix.data.generationmix.map((gm: GenerationMix) => (
+              <Col span={5}>
+                <GenerationMixChart {...gm} />
+              </Col>
+            ))}
+          </Row>
         </>
       )}
       {hasError && (

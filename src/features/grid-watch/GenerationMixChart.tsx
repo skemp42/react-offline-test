@@ -1,11 +1,15 @@
 import React, { ReactElement } from "react";
 import { GenerationMix } from "./models/GenerationMixResponse";
+import { Progress } from "antd";
 
 const GenerationMixChart = ({ fuel, perc }: GenerationMix): ReactElement => {
   return (
     <section data-testid={`${fuel}-chart`}>
-      <div>Fuel: {fuel}</div>
-      <div>Perc: {perc}</div>
+      <Progress
+        type='circle'
+        percent={perc}
+        format={(percent) => `${fuel}  ${percent}%`}
+      />
     </section>
   );
 };
