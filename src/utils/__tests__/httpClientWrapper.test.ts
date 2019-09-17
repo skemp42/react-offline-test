@@ -50,7 +50,6 @@ describe("http client wrapper", () => {
       try {
         await get("/failed-response-test");
       } catch (error) {
-        debugger;
         expect(error).toBe(exampleData);
       }
     });
