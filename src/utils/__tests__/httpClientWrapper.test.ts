@@ -37,7 +37,12 @@ describe("http client wrapper", () => {
 
     it("returns data on error status code", async () => {
       const exampleData = {
-        example: "bad-data"
+        code: 400,
+        response: {
+          data: {
+            example: "bad-data"
+          }
+        }
       };
 
       mockAxiosToReject(exampleData);
@@ -45,6 +50,7 @@ describe("http client wrapper", () => {
       try {
         await get("/failed-response-test");
       } catch (error) {
+        debugger;
         expect(error).toBe(exampleData);
       }
     });

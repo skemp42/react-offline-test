@@ -8,7 +8,8 @@ export const get = async <T>(endpoint: string): Promise<T> => {
         resolve(res.data);
       } catch (error) {
         //TODO: Logging, etc
-        reject(error.response.data);
+        const err = error.response ? error.response.data : error;
+        reject(err);
       }
     }
   );
