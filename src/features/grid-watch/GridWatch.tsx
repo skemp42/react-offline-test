@@ -12,8 +12,15 @@ const GridWatch = (): ReactElement => {
     GenerationMixResponse | undefined
   >(undefined);
 
+  const [hasError, setHasError] = useState(false);
+
   useEffect(() => {
-    getGenerations().then((res) => setGenerationMix(res));
+    getGenerations()
+      .then((res) => setGenerationMix(res))
+      .catch((err) => {
+        console.error(err);
+        setHasError(true);
+      });
   }, []);
 
   return (
@@ -36,6 +43,11 @@ const GridWatch = (): ReactElement => {
             <GenerationMixChart {...gm} />
           ))}
         </>
+      )}
+      {hasError && (
+        <div style={{ color: "red" }}>
+          Something went wrong... Please refresh and try again...
+        </div>
       )}
     </section>
   );
