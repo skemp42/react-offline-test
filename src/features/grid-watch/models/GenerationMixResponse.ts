@@ -5,12 +5,8 @@ interface Data {
 }
 
 export interface GenerationMix {
-  fuel: Fuel;
+  fuel: string;
   perc: number;
-}
-
-export enum Fuel {
-  Biomass = "biomass"
 }
 
 export default interface GenerationMixResponse {

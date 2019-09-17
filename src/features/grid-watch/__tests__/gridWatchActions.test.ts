@@ -1,5 +1,5 @@
 import { get } from "../../../utils/httpClientWrapper";
-import GenerationMixResponse, { Fuel } from "../models/GenerationMixResponse";
+import GenerationMixResponse from "../models/GenerationMixResponse";
 import { getGenerations } from "../gridWatchActions";
 
 jest.mock("../../../utils/httpClientWrapper");
@@ -16,7 +16,7 @@ describe("grid watch actions", () => {
         to: new Date(),
         generationmix: [
           {
-            fuel: Fuel.Biomass,
+            fuel: "biomass",
             perc: 0.4
           }
         ]
