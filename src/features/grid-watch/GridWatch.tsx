@@ -41,7 +41,7 @@ const GridWatch = (): ReactElement => {
           </Row>
           <Row type='flex' justify='center'>
             {generationMix.data.generationmix.map((gm: GenerationMix) => (
-              <Col span={5}>
+              <Col span={2}>
                 <GenerationMixChart {...gm} />
               </Col>
             ))}
