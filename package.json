@@ -36,19 +36,20 @@
     "webpack-dev-server": "^3.8.0"
   },
   "jest": {
-    "testRegex": "\\.(test|spec)\\.(j|t)sx?$",
+    "watchPathIgnorePatterns": [
+      "cypress/"
+    ],
+    "testRegex": "\\.(test|spec)\\.(t)sx?$",
     "transform": {
-      "^.+\\.jsx?$": "babel-jest",
       "^.+\\.tsx?$": "ts-jest"
     },
     "moduleNameMapper": {
       "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
     },
     "moduleFileExtensions": [
-      "ts",
-      "tsx",
       "js",
-      "jsx"
+      "ts",
+      "tsx"
     ]
   }
 }
