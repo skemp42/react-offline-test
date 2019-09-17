@@ -39,9 +39,9 @@ const GridWatch = (): ReactElement => {
               {moment(generationMix.data.from).format("MMM Do YYYY")} <hr />
             </Col>
           </Row>
-          <Row type='flex' justify='center'>
+          <Row type='flex' justify='center' gutter={5}>
             {generationMix.data.generationmix.map((gm: GenerationMix) => (
-              <Col span={2}>
+              <Col xs={24} sm={12} md={2} style={{ margin: 20 }} key={gm.perc}>
                 <GenerationMixChart {...gm} />
               </Col>
             ))}
