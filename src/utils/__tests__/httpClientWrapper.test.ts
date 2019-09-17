@@ -4,10 +4,22 @@ import { get } from "../httpClientWrapper";
 jest.mock("axios");
 const mockedAxios = Axios as jest.Mocked<typeof Axios>;
 
-const mockAxiosToReolve = (returnedData: unknown) => {
+const mockAxiosToResolve = (returnedData: unknown) => {
   mockedAxios.get.mockImplementation(() => {
     return Promise.resolve({
-      data: returnedData
+      data: returnedData,
+      code: 200
+    });
+  });
+};
+
+const mockAxiosToReject = (returnedData: unknown) => {
+  mockedAxios.get.mockImplementation(() => {
+    return Promise.reject({
+      response: {
+        data: returnedData
+      },
+      code: 400
     });
   });
 };
@@ -18,9 +30,23 @@ describe("http client wrapper", () => {
       const exampleData = {
         example: "data"
       };
-      mockAxiosToReolve(exampleData);
+      mockAxiosToResolve(exampleData);
       const data = await get("/test");
       expect(data).toBe(exampleData);
+    });
+
+    it("returns data on error status code", async () => {
+      const exampleData = {
+        example: "bad-data"
+      };
+
+      mockAxiosToReject(exampleData);
+
+      try {
+        await get("/failed-response-test");
+      } catch (error) {
+        expect(error).toBe(exampleData);
+      }
     });
   });
 });

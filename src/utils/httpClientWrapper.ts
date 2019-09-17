@@ -7,7 +7,8 @@ export const get = async <T>(endpoint: string): Promise<T> => {
         const res: AxiosResponse = await Axios.get<T>(endpoint);
         resolve(res.data);
       } catch (error) {
-        console.error(error);
+        //TODO: Logging, etc
+        reject(error.response.data);
       }
     }
   );
