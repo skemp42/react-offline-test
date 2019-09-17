@@ -4,7 +4,7 @@ interface Data {
   generationmix: GenerationMix[];
 }
 
-interface GenerationMix {
+export interface GenerationMix {
   fuel: Fuel;
   perc: number;
 }
