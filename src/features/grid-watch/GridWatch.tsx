@@ -1,8 +1,11 @@
 import React, { ReactElement, useState, useEffect } from "react";
 import { getGenerations } from "./gridWatchActions";
-import GenerationMixResponse from "./models/GenerationMixResponse";
+import GenerationMixResponse, {
+  GenerationMix
+} from "./models/GenerationMixResponse";
 import { Col, Row } from "antd";
 import moment from "moment";
+import GenerationMixChart from "./GenerationMixChart";
 
 const GridWatch = (): ReactElement => {
   const [generationMix, setGenerationMix] = useState<
@@ -22,15 +25,18 @@ const GridWatch = (): ReactElement => {
           </h1>
         </Col>
       </Row>
-      <Row justify='center' type='flex'>
-        {generationMix && (
-          <>
+      {generationMix && (
+        <>
+          <Row justify='center' type='flex'>
             <Col>
               {moment(generationMix.data.from).format("MMM Do YYYY")} <hr />
             </Col>
-          </>
-        )}
-      </Row>
+          </Row>
+          {generationMix.data.generationmix.map((gm: GenerationMix) => (
+            <GenerationMixChart {...gm} />
+          ))}
+        </>
+      )}
     </section>
   );
 };
